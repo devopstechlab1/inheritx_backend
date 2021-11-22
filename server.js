@@ -9,9 +9,17 @@ const env = process.env.NODE_ENV || 'development'; //setting environment
 
 
 // applied cors on specific origin - environment wise
-app.use(cors({
-    origin: config.serverConfig.CORS.allowedHosts
-}));
+// app.use(cors({
+//     origin: config.serverConfig.CORS.allowedHosts
+// }));
+
+const corsOpts = {
+    origin: '*',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
+}
+
+app.use(cors(corsOpts))
 
 app.use(bodyParser.json({ limit: '50mb' })); // to parse body in json
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true })); //  to support URL-encoded bodies and to remove deprecation warnings
